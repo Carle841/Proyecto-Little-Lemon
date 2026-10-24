@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 54" role="img" aria-labelledby="title">
+  <title>Little Lemon</title>
+  <circle cx="24" cy="27" r="18" fill="#f4ce14"/>
+  <path d="M24 9c6-7 12-8 15-7-1 5-5 9-12 10" fill="#495e57"/>
+  <path d="M24 14c-5 8-5 18 0 26M29 15c-2 7-2 15 0 23" fill="none" stroke="#fff" stroke-width="2"/>
+  <text x="53" y="34" fill="#495e57" font-family="Georgia, serif" font-size="22" font-weight="bold">LITTLE LEMON</text>
+</svg>
