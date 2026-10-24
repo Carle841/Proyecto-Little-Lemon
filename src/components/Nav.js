@@ -15,7 +15,10 @@ function Nav() {
       <ul>
         {links.map(([label, href]) => (
           <li key={label}>
-            <NavLink to={href} className={({ isActive }) => (isActive ? 'active' : '')}>
+            <NavLink
+              to={href}
+              className={({ isActive }) => (isActive ? 'active' : '')}
+            >
               {label}
             </NavLink>
           </li>

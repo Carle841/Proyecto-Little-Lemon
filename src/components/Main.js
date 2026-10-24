@@ -39,7 +39,7 @@ function HomePage() {
             We are a family owned Mediterranean restaurant, focused on
             traditional recipes served with a modern twist.
           </p>
-          <Link className="button" to="/reservations">
+          <Link className="button" to="/reservations" aria-label="On Click">
             Reserve a Table
           </Link>
         </div>

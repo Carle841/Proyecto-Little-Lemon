@@ -36,7 +36,9 @@ function BookingForm({ availableTimes, updateTimes, submitForm }) {
 
   return (
     <div className="booking-form-wrapper">
-      <form className="booking-form" onSubmit={handleSubmit}>
+      <form className="booking-form" onSubmit={handleSubmit} aria-labelledby="booking-form-title">
+        <fieldset>
+          <legend id="booking-form-title">Choose your reservation details</legend>
         <div className="booking-form__field">
           <label htmlFor="booking-date">Date</label>
           <input
@@ -50,10 +52,11 @@ function BookingForm({ availableTimes, updateTimes, submitForm }) {
               updateTimes({ type: 'dateChanged', date: selectedDate });
             }}
             onBlur={() => markTouched('date')}
+            aria-describedby="booking-date-error"
             required
           />
           {touched.date && !isDateValid && (
-            <span className="booking-form__error">Choose today or a future date.</span>
+            <span className="booking-form__error" id="booking-date-error" role="alert">Choose today or a future date.</span>
           )}
         </div>
 
@@ -64,6 +67,7 @@ function BookingForm({ availableTimes, updateTimes, submitForm }) {
             value={time}
             onChange={(event) => setTime(event.target.value)}
             onBlur={() => markTouched('time')}
+            aria-describedby="booking-time-error"
             required
           >
             <option value="" disabled>Select a time</option>
@@ -72,7 +76,7 @@ function BookingForm({ availableTimes, updateTimes, submitForm }) {
             ))}
           </select>
           {touched.time && !isTimeValid && (
-            <span className="booking-form__error">Choose an available time.</span>
+            <span className="booking-form__error" id="booking-time-error" role="alert">Choose an available time.</span>
           )}
         </div>
 
@@ -86,10 +90,11 @@ function BookingForm({ availableTimes, updateTimes, submitForm }) {
             value={guests}
             onChange={(event) => setGuests(event.target.value)}
             onBlur={() => markTouched('guests')}
+            aria-describedby="booking-guests-error"
             required
           />
           {touched.guests && !isGuestsValid && (
-            <span className="booking-form__error">Enter between 1 and 10 guests.</span>
+            <span className="booking-form__error" id="booking-guests-error" role="alert">Enter between 1 and 10 guests.</span>
           )}
         </div>
 
@@ -100,6 +105,7 @@ function BookingForm({ availableTimes, updateTimes, submitForm }) {
             value={occasion}
             onChange={(event) => setOccasion(event.target.value)}
             onBlur={() => markTouched('occasion')}
+            aria-describedby="booking-occasion-error"
             required
           >
             <option value="">Select an occasion</option>
@@ -107,13 +113,18 @@ function BookingForm({ availableTimes, updateTimes, submitForm }) {
             <option value="anniversary">Anniversary</option>
           </select>
           {touched.occasion && !isOccasionValid && (
-            <span className="booking-form__error">Choose an occasion.</span>
+            <span className="booking-form__error" id="booking-occasion-error" role="alert">Choose an occasion.</span>
           )}
         </div>
 
-        <button className="button booking-form__submit" type="submit" disabled={!isFormValid}>
+        <button
+          className="button booking-form__submit"
+          type="submit"
+          disabled={!isFormValid}
+        >
           Reserve a Table
         </button>
+        </fieldset>
         </form>
     </div>
   );
