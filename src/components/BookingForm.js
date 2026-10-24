@@ -1,17 +1,14 @@
 import { useState } from 'react';
-import { submitBooking } from '../api';
 
-function BookingForm({ availableTimes, updateTimes }) {
+function BookingForm({ availableTimes, updateTimes, submitForm }) {
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
   const [guests, setGuests] = useState('2');
   const [occasion, setOccasion] = useState('');
-  const [submitted, setSubmitted] = useState(false);
-
   function handleSubmit(event) {
     event.preventDefault();
     const formData = { date, time, guests, occasion };
-    setSubmitted(submitBooking(formData));
+    submitForm(formData);
   }
 
   return (
@@ -76,12 +73,7 @@ function BookingForm({ availableTimes, updateTimes }) {
         <button className="button booking-form__submit" type="submit">
           Reserve a Table
         </button>
-      </form>
-      {submitted && (
-        <p className="booking-form__success" role="status">
-          Thanks! Your reservation request has been received.
-        </p>
-      )}
+        </form>
     </div>
   );
 }

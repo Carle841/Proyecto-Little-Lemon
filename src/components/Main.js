@@ -1,7 +1,9 @@
 import { useReducer } from 'react';
-import { Link, Route, Routes } from 'react-router-dom';
+import { Link, Route, Routes, useNavigate } from 'react-router-dom';
 import BookingPage from './BookingPage';
+import ConfirmedBooking from './ConfirmedBooking';
 import { initializeTimes, updateTimes } from './bookingTimes';
+import { submitBooking } from '../api';
 
 export { initializeTimes, updateTimes } from './bookingTimes';
 
@@ -85,11 +87,18 @@ function ContentPage({ title, description, action }) {
 }
 
 function Main() {
+  const navigate = useNavigate();
   const [availableTimes, updateTimesState] = useReducer(
     updateTimes,
     undefined,
     initializeTimes,
   );
+
+  function submitForm(formData) {
+    if (submitBooking(formData)) {
+      navigate('/confirmed-booking');
+    }
+  }
 
   return (
     <main>
@@ -105,8 +114,15 @@ function Main() {
         />
         <Route
           path="/reservations"
-          element={<BookingPage availableTimes={availableTimes} updateTimes={updateTimesState} />}
+          element={(
+            <BookingPage
+              availableTimes={availableTimes}
+              updateTimes={updateTimesState}
+              submitForm={submitForm}
+            />
+          )}
         />
+        <Route path="/confirmed-booking" element={<ConfirmedBooking />} />
         <Route
           path="/order-online"
           element={<ContentPage title="Order online" description="Take Little Lemon home with easy pickup and delivery options." />}

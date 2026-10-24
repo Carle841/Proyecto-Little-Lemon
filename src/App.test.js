@@ -22,6 +22,7 @@ test('renders the booking form date label', () => {
     <BookingForm
       availableTimes={initializeTimes()}
       updateTimes={() => {}}
+      submitForm={() => {}}
     />,
   );
 

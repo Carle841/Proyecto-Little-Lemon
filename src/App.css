@@ -200,6 +200,15 @@ h1 {
   max-width: 520px;
 }
 
+.confirmation-page {
+  text-align: center;
+}
+
+.confirmation-page > p:not(.eyebrow) {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .booking-page {
   background: var(--light);
   display: grid;
