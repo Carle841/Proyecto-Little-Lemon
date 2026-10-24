@@ -139,6 +139,65 @@ h2 {
   font-size: 18px;
 }
 
+.specials__grid {
+  display: grid;
+  gap: 22px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 32px;
+}
+
+.dish-card {
+  background: var(--light);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.dish-card > img {
+  display: block;
+  height: 190px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.dish-card__body {
+  padding: 18px;
+}
+
+.dish-card__heading {
+  align-items: center;
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+}
+
+.dish-card h3 {
+  font-family: 'Markazi Text', serif;
+  font-size: 26px;
+  margin: 0;
+}
+
+.dish-card__heading span {
+  color: var(--peach);
+  font-weight: 700;
+}
+
+.dish-card__body p {
+  color: #5c6a64;
+  font-size: 14px;
+  line-height: 1.35;
+  min-height: 58px;
+}
+
+.dish-card__body a {
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.dish-card__body a span {
+  margin-left: 5px;
+}
+
 .site-footer {
   background: var(--light);
   display: flex;
@@ -178,6 +237,10 @@ h2 {
 
   .hero__image {
     width: 100%;
+  }
+
+  .specials__grid {
+    grid-template-columns: 1fr;
   }
 
   .site-footer {

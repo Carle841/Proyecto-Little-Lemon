@@ -1,4 +1,25 @@
 function Main() {
+  const specials = [
+    {
+      name: 'Greek salad',
+      price: '$12.99',
+      image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=600&q=80',
+      description: 'Crisp lettuce, peppers, olives and our signature feta.',
+    },
+    {
+      name: 'Bruchetta',
+      price: '$5.99',
+      image: 'https://images.unsplash.com/photo-1572695157366-5e585ab2b69f?auto=format&fit=crop&w=600&q=80',
+      description: 'Toasted bread with garlic, tomatoes and fresh basil.',
+    },
+    {
+      name: 'Lemon dessert',
+      price: '$5.00',
+      image: 'https://images.unsplash.com/photo-1519915028121-7d3463d20b13?auto=format&fit=crop&w=600&q=80',
+      description: 'A bright, creamy classic with a crisp biscuit base.',
+    },
+  ];
+
   return (
     <main>
       <section className="hero" id="about">
@@ -25,6 +46,21 @@ function Main() {
           <a className="button" href="#order-online">Online Menu</a>
         </div>
         <p>Discover our fresh seasonal dishes, prepared with traditional flavors.</p>
+        <div className="specials__grid">
+          {specials.map((special) => (
+            <article className="dish-card" key={special.name}>
+              <img src={special.image} alt={special.name} />
+              <div className="dish-card__body">
+                <div className="dish-card__heading">
+                  <h3>{special.name}</h3>
+                  <span>{special.price}</span>
+                </div>
+                <p>{special.description}</p>
+                <a href="#order-online">Order a delivery <span aria-hidden="true">→</span></a>
+              </div>
+            </article>
+          ))}
+        </div>
       </section>
     </main>
   );
