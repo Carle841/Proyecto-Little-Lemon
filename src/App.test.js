@@ -3,14 +3,11 @@ import BookingForm from './components/BookingForm';
 import { initializeTimes, updateTimes } from './components/bookingTimes';
 
 beforeEach(() => {
-  window.fetchAPI = jest.fn(() => [
-    '5:00 PM',
-    '5:30 PM',
-    '6:00 PM',
-    '7:00 PM',
-    '8:00 PM',
-    '8:30 PM',
-  ]);
+  window.fetchAPI = jest.fn((date) => (
+    date === '2026-10-25'
+      ? ['5:30 PM', '7:00 PM']
+      : ['5:00 PM', '6:00 PM', '8:00 PM']
+  ));
 });
 
 afterEach(() => {
@@ -30,22 +27,22 @@ test('renders the booking form date label', () => {
 });
 
 test('initializeTimes returns the expected available times', () => {
-  expect(initializeTimes()).toEqual([
-    '5:00 PM',
-    '5:30 PM',
-    '6:00 PM',
-    '7:00 PM',
-    '8:00 PM',
-    '8:30 PM',
-  ]);
+  const availableTimes = initializeTimes();
+
+  expect(availableTimes).toEqual(['5:00 PM', '6:00 PM', '8:00 PM']);
+  expect(availableTimes).not.toHaveLength(0);
+  expect(window.fetchAPI).toHaveBeenCalledWith(expect.any(Date));
 });
 
-test('updateTimes keeps the current times for a selected date', () => {
-  const currentTimes = initializeTimes();
+test('updateTimes returns available times for the selected date', () => {
+  const currentTimes = ['5:00 PM', '6:00 PM', '8:00 PM'];
 
-  expect(updateTimes(currentTimes, {
+  const availableTimes = updateTimes(currentTimes, {
     type: 'dateChanged',
     date: '2026-10-25',
-  })).toEqual(currentTimes);
+  });
+
+  expect(availableTimes).toEqual(['5:30 PM', '7:00 PM']);
+  expect(availableTimes).not.toHaveLength(0);
   expect(window.fetchAPI).toHaveBeenCalledWith('2026-10-25');
 });
