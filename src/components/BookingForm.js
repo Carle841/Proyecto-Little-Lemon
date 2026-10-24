@@ -1,13 +1,10 @@
 import { useState } from 'react';
 
-const initialTimes = ['5:00 PM', '5:30 PM', '6:00 PM', '7:00 PM', '8:00 PM', '8:30 PM'];
-
-function BookingForm() {
+function BookingForm({ availableTimes, updateTimes }) {
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
   const [guests, setGuests] = useState('2');
   const [occasion, setOccasion] = useState('');
-  const [availableTimes] = useState(initialTimes);
   const [submitted, setSubmitted] = useState(false);
 
   function handleSubmit(event) {
@@ -24,7 +21,11 @@ function BookingForm() {
             id="booking-date"
             type="date"
             value={date}
-            onChange={(event) => setDate(event.target.value)}
+            onChange={(event) => {
+              const selectedDate = event.target.value;
+              setDate(selectedDate);
+              updateTimes({ type: 'dateChanged', date: selectedDate });
+            }}
             required
           />
         </div>

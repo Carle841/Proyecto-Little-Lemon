@@ -1,5 +1,20 @@
+import { useReducer } from 'react';
 import { Link, Route, Routes } from 'react-router-dom';
 import BookingPage from './BookingPage';
+
+const initialTimes = ['5:00 PM', '5:30 PM', '6:00 PM', '7:00 PM', '8:00 PM', '8:30 PM'];
+
+export function initializeTimes() {
+  return initialTimes;
+}
+
+export function updateTimes(state, action) {
+  if (action.type === 'dateChanged') {
+    return state;
+  }
+
+  return state;
+}
 
 const specials = [
   {
@@ -81,6 +96,12 @@ function ContentPage({ title, description, action }) {
 }
 
 function Main() {
+  const [availableTimes, updateTimesState] = useReducer(
+    updateTimes,
+    undefined,
+    initializeTimes,
+  );
+
   return (
     <main>
       <Routes>
@@ -95,7 +116,7 @@ function Main() {
         />
         <Route
           path="/reservations"
-          element={<BookingPage />}
+          element={<BookingPage availableTimes={availableTimes} updateTimes={updateTimesState} />}
         />
         <Route
           path="/order-online"

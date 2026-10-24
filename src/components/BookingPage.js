@@ -1,6 +1,6 @@
 import BookingForm from './BookingForm';
 
-function BookingPage() {
+function BookingPage({ availableTimes, updateTimes }) {
   return (
     <section className="booking-page">
       <div className="booking-page__intro">
@@ -8,7 +8,7 @@ function BookingPage() {
         <h1>Reserve a table</h1>
         <p>Make your next meal memorable. Choose your preferred date, time and occasion below.</p>
       </div>
-      <BookingForm />
+      <BookingForm availableTimes={availableTimes} updateTimes={updateTimes} />
     </section>
   );
 }
