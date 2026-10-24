@@ -2,6 +2,21 @@ import { render, screen } from '@testing-library/react';
 import BookingForm from './components/BookingForm';
 import { initializeTimes, updateTimes } from './components/bookingTimes';
 
+beforeEach(() => {
+  window.fetchAPI = jest.fn(() => [
+    '5:00 PM',
+    '5:30 PM',
+    '6:00 PM',
+    '7:00 PM',
+    '8:00 PM',
+    '8:30 PM',
+  ]);
+});
+
+afterEach(() => {
+  delete window.fetchAPI;
+});
+
 test('renders the booking form date label', () => {
   render(
     <BookingForm
@@ -31,4 +46,5 @@ test('updateTimes keeps the current times for a selected date', () => {
     type: 'dateChanged',
     date: '2026-10-25',
   })).toEqual(currentTimes);
+  expect(window.fetchAPI).toHaveBeenCalledWith('2026-10-25');
 });

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { submitBooking } from '../api';
 
 function BookingForm({ availableTimes, updateTimes }) {
   const [date, setDate] = useState('');
@@ -9,7 +10,8 @@ function BookingForm({ availableTimes, updateTimes }) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    setSubmitted(true);
+    const formData = { date, time, guests, occasion };
+    setSubmitted(submitBooking(formData));
   }
 
   return (
