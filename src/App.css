@@ -269,11 +269,23 @@ h1 {
   outline: 2px solid rgb(73 94 87 / 20%);
 }
 
+.booking-form__error {
+  color: #b3261e;
+  font-size: 13px;
+  font-weight: 400;
+}
+
 .booking-form__submit {
   border: 0;
   cursor: pointer;
   font: inherit;
   margin-top: 6px;
+}
+
+.booking-form__submit:disabled {
+  background: #c8ceca;
+  cursor: not-allowed;
+  opacity: .8;
 }
 
 .booking-form__success {
