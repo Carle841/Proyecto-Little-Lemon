@@ -1,4 +1,5 @@
 import { Link, Route, Routes } from 'react-router-dom';
+import BookingPage from './BookingPage';
 
 const specials = [
   {
@@ -94,7 +95,7 @@ function Main() {
         />
         <Route
           path="/reservations"
-          element={<ContentPage title="Reserve a table" description="Choose a date and time to enjoy a sunny Mediterranean meal with us." />}
+          element={<BookingPage />}
         />
         <Route
           path="/order-online"

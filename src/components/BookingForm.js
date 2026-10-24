@@ -1,0 +1,86 @@
+import { useState } from 'react';
+
+const initialTimes = ['5:00 PM', '5:30 PM', '6:00 PM', '7:00 PM', '8:00 PM', '8:30 PM'];
+
+function BookingForm() {
+  const [date, setDate] = useState('');
+  const [time, setTime] = useState('');
+  const [guests, setGuests] = useState('2');
+  const [occasion, setOccasion] = useState('');
+  const [availableTimes] = useState(initialTimes);
+  const [submitted, setSubmitted] = useState(false);
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    setSubmitted(true);
+  }
+
+  return (
+    <div className="booking-form-wrapper">
+      <form className="booking-form" onSubmit={handleSubmit}>
+        <div className="booking-form__field">
+          <label htmlFor="booking-date">Date</label>
+          <input
+            id="booking-date"
+            type="date"
+            value={date}
+            onChange={(event) => setDate(event.target.value)}
+            required
+          />
+        </div>
+
+        <div className="booking-form__field">
+          <label htmlFor="booking-time">Time</label>
+          <select
+            id="booking-time"
+            value={time}
+            onChange={(event) => setTime(event.target.value)}
+            required
+          >
+            <option value="" disabled>Select a time</option>
+            {availableTimes.map((availableTime) => (
+              <option key={availableTime} value={availableTime}>{availableTime}</option>
+            ))}
+          </select>
+        </div>
+
+        <div className="booking-form__field">
+          <label htmlFor="booking-guests">Number of guests</label>
+          <input
+            id="booking-guests"
+            type="number"
+            min="1"
+            max="10"
+            value={guests}
+            onChange={(event) => setGuests(event.target.value)}
+            required
+          />
+        </div>
+
+        <div className="booking-form__field">
+          <label htmlFor="booking-occasion">Occasion</label>
+          <select
+            id="booking-occasion"
+            value={occasion}
+            onChange={(event) => setOccasion(event.target.value)}
+          >
+            <option value="">Select an occasion</option>
+            <option value="birthday">Birthday</option>
+            <option value="anniversary">Anniversary</option>
+          </select>
+        </div>
+
+        <button className="button booking-form__submit" type="submit">
+          Reserve a Table
+        </button>
+      </form>
+      {submitted && (
+        <p className="booking-form__success" role="status">
+          Thanks! Your reservation request has been received.
+        </p>
+      )}
+    </div>
+  );
+}
+
+export default BookingForm;

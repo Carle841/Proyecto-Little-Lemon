@@ -200,6 +200,81 @@ h1 {
   max-width: 520px;
 }
 
+.booking-page {
+  background: var(--light);
+  display: grid;
+  gap: 48px;
+  grid-template-columns: minmax(0, .85fr) minmax(320px, 1fr);
+  margin: 0 auto;
+  max-width: 1024px;
+  min-height: 55vh;
+  padding: 80px 32px;
+}
+
+.booking-page__intro h1 {
+  color: var(--green);
+  margin: 8px 0 18px;
+}
+
+.booking-page__intro > p:not(.eyebrow) {
+  font-size: 18px;
+  max-width: 390px;
+}
+
+.booking-form-wrapper {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgb(51 51 51 / 10%);
+  padding: 28px;
+}
+
+.booking-form {
+  display: grid;
+  gap: 18px;
+}
+
+.booking-form__field {
+  display: grid;
+  gap: 6px;
+}
+
+.booking-form label {
+  color: var(--green);
+  font-weight: 700;
+}
+
+.booking-form input,
+.booking-form select {
+  background: #fff;
+  border: 1px solid #bfc8c3;
+  border-radius: 6px;
+  color: var(--dark);
+  font: inherit;
+  min-height: 44px;
+  padding: 8px 10px;
+}
+
+.booking-form input:focus,
+.booking-form select:focus {
+  border-color: var(--green);
+  outline: 2px solid rgb(73 94 87 / 20%);
+}
+
+.booking-form__submit {
+  border: 0;
+  cursor: pointer;
+  font: inherit;
+  margin-top: 6px;
+}
+
+.booking-form__success {
+  background: #e3f0df;
+  border-left: 4px solid var(--green);
+  color: var(--green);
+  margin: 22px 0 0;
+  padding: 12px;
+}
+
 .section-heading {
   align-items: center;
   display: flex;
@@ -317,6 +392,11 @@ h2 {
 
   .specials__grid {
     grid-template-columns: 1fr;
+  }
+
+  .booking-page {
+    grid-template-columns: 1fr;
+    padding: 58px 32px;
   }
 
   .site-footer {
