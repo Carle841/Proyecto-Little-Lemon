@@ -1,28 +1,30 @@
-function Main() {
-  const specials = [
-    {
-      name: 'Greek salad',
-      price: '$12.99',
-      image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=600&q=80',
-      description: 'Crisp lettuce, peppers, olives and our signature feta.',
-    },
-    {
-      name: 'Bruchetta',
-      price: '$5.99',
-      image: 'https://images.unsplash.com/photo-1572695157366-5e585ab2b69f?auto=format&fit=crop&w=600&q=80',
-      description: 'Toasted bread with garlic, tomatoes and fresh basil.',
-    },
-    {
-      name: 'Lemon dessert',
-      price: '$5.00',
-      image: 'https://images.unsplash.com/photo-1519915028121-7d3463d20b13?auto=format&fit=crop&w=600&q=80',
-      description: 'A bright, creamy classic with a crisp biscuit base.',
-    },
-  ];
+import { Link, Route, Routes } from 'react-router-dom';
 
+const specials = [
+  {
+    name: 'Greek salad',
+    price: '$12.99',
+    image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=600&q=80',
+    description: 'Crisp lettuce, peppers, olives and our signature feta.',
+  },
+  {
+    name: 'Bruchetta',
+    price: '$5.99',
+    image: 'https://images.unsplash.com/photo-1572695157366-5e585ab2b69f?auto=format&fit=crop&w=600&q=80',
+    description: 'Toasted bread with garlic, tomatoes and fresh basil.',
+  },
+  {
+    name: 'Lemon dessert',
+    price: '$5.00',
+    image: 'https://images.unsplash.com/photo-1519915028121-7d3463d20b13?auto=format&fit=crop&w=600&q=80',
+    description: 'A bright, creamy classic with a crisp biscuit base.',
+  },
+];
+
+function HomePage() {
   return (
-    <main>
-      <section className="hero" id="about">
+    <>
+      <section className="hero">
         <div className="hero__content">
           <p className="eyebrow">Chicago</p>
           <h1>Little Lemon</h1>
@@ -30,9 +32,9 @@ function Main() {
             We are a family owned Mediterranean restaurant, focused on
             traditional recipes served with a modern twist.
           </p>
-          <a className="button" href="#reservations">
+          <Link className="button" to="/reservations">
             Reserve a Table
-          </a>
+          </Link>
         </div>
         <img
           className="hero__image"
@@ -40,10 +42,10 @@ function Main() {
           alt="Fresh Mediterranean food prepared at Little Lemon"
         />
       </section>
-      <section className="specials" id="menu" aria-labelledby="specials-title">
+      <section className="specials" aria-labelledby="specials-title">
         <div className="section-heading">
           <h2 id="specials-title">This week's specials!</h2>
-          <a className="button" href="#order-online">Online Menu</a>
+          <Link className="button" to="/menu">Online Menu</Link>
         </div>
         <p>Discover our fresh seasonal dishes, prepared with traditional flavors.</p>
         <div className="specials__grid">
@@ -56,12 +58,54 @@ function Main() {
                   <span>{special.price}</span>
                 </div>
                 <p>{special.description}</p>
-                <a href="#order-online">Order a delivery <span aria-hidden="true">→</span></a>
+                <Link to="/order-online">Order a delivery <span aria-hidden="true">→</span></Link>
               </div>
             </article>
           ))}
         </div>
       </section>
+    </>
+  );
+}
+
+function ContentPage({ title, description, action }) {
+  return (
+    <section className="content-page">
+      <p className="eyebrow">Little Lemon</p>
+      <h1>{title}</h1>
+      <p>{description}</p>
+      {action && <Link className="button" to={action.to}>{action.label}</Link>}
+    </section>
+  );
+}
+
+function Main() {
+  return (
+    <main>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route
+          path="/about"
+          element={<ContentPage title="Our story" description="Little Lemon is a family-owned Mediterranean restaurant bringing traditional recipes and Chicago hospitality to every table." action={{ to: '/reservations', label: 'Reserve a Table' }} />}
+        />
+        <Route
+          path="/menu"
+          element={<ContentPage title="Our menu" description="Explore fresh Mediterranean dishes, from our crisp Greek salad to our bright lemon dessert." />}
+        />
+        <Route
+          path="/reservations"
+          element={<ContentPage title="Reserve a table" description="Choose a date and time to enjoy a sunny Mediterranean meal with us." />}
+        />
+        <Route
+          path="/order-online"
+          element={<ContentPage title="Order online" description="Take Little Lemon home with easy pickup and delivery options." />}
+        />
+        <Route
+          path="/login"
+          element={<ContentPage title="Welcome back" description="Log in to manage your reservations and orders." />}
+        />
+        <Route path="*" element={<ContentPage title="Page not found" description="The page you are looking for does not exist." action={{ to: '/', label: 'Back home' }} />} />
+      </Routes>
     </main>
   );
 }

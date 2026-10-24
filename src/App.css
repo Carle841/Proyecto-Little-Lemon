@@ -121,6 +121,10 @@ a {
   color: var(--green);
 }
 
+.site-nav a.active {
+  border-color: var(--yellow);
+}
+
 .hero {
   align-items: center;
   background: var(--green);
@@ -176,6 +180,24 @@ h1 {
 
 .specials {
   padding: 58px 32px;
+}
+
+.content-page {
+  margin: 0 auto;
+  max-width: 1024px;
+  min-height: 55vh;
+  padding: 80px 32px;
+}
+
+.content-page h1 {
+  color: var(--green);
+  margin: 8px 0 18px;
+}
+
+.content-page > p:not(.eyebrow) {
+  font-size: 18px;
+  margin-bottom: 28px;
+  max-width: 520px;
 }
 
 .section-heading {

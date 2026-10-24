@@ -1,11 +1,13 @@
+import { NavLink } from 'react-router-dom';
+
 function Nav() {
   const links = [
     ['Home', '/'],
-    ['About', '#about'],
-    ['Menu', '#menu'],
-    ['Reservations', '#reservations'],
-    ['Order Online', '#order-online'],
-    ['Login', '#login'],
+    ['About', '/about'],
+    ['Menu', '/menu'],
+    ['Reservations', '/reservations'],
+    ['Order Online', '/order-online'],
+    ['Login', '/login'],
   ];
 
   return (
@@ -13,7 +15,9 @@ function Nav() {
       <ul>
         {links.map(([label, href]) => (
           <li key={label}>
-            <a href={href}>{label}</a>
+            <NavLink to={href} className={({ isActive }) => (isActive ? 'active' : '')}>
+              {label}
+            </NavLink>
           </li>
         ))}
       </ul>
