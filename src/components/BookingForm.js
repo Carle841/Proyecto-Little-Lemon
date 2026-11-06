@@ -52,7 +52,8 @@ function BookingForm({ availableTimes, updateTimes, submitForm }) {
               updateTimes({ type: 'dateChanged', date: selectedDate });
             }}
             onBlur={() => markTouched('date')}
-            aria-describedby="booking-date-error"
+            aria-describedby={touched.date && !isDateValid ? 'booking-date-error' : undefined}
+            aria-invalid={touched.date && !isDateValid}
             required
           />
           {touched.date && !isDateValid && (
@@ -67,7 +68,8 @@ function BookingForm({ availableTimes, updateTimes, submitForm }) {
             value={time}
             onChange={(event) => setTime(event.target.value)}
             onBlur={() => markTouched('time')}
-            aria-describedby="booking-time-error"
+            aria-describedby={touched.time && !isTimeValid ? 'booking-time-error' : undefined}
+            aria-invalid={touched.time && !isTimeValid}
             required
           >
             <option value="" disabled>Select a time</option>
@@ -90,7 +92,8 @@ function BookingForm({ availableTimes, updateTimes, submitForm }) {
             value={guests}
             onChange={(event) => setGuests(event.target.value)}
             onBlur={() => markTouched('guests')}
-            aria-describedby="booking-guests-error"
+            aria-describedby={touched.guests && !isGuestsValid ? 'booking-guests-error' : undefined}
+            aria-invalid={touched.guests && !isGuestsValid}
             required
           />
           {touched.guests && !isGuestsValid && (
@@ -105,7 +108,8 @@ function BookingForm({ availableTimes, updateTimes, submitForm }) {
             value={occasion}
             onChange={(event) => setOccasion(event.target.value)}
             onBlur={() => markTouched('occasion')}
-            aria-describedby="booking-occasion-error"
+            aria-describedby={touched.occasion && !isOccasionValid ? 'booking-occasion-error' : undefined}
+            aria-invalid={touched.occasion && !isOccasionValid}
             required
           >
             <option value="">Select an occasion</option>
